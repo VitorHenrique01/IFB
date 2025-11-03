@@ -1,0 +1,10 @@
+#uma lista em python é uma estrtura que armazena varios
+#que podem ser de um mesmo tiipo ou não.
+#Uma lista é criada como a construção : [dado1, dado2,...dadon]
+
+lista1 = [10,20,30,40]
+lista2 = ["programação", "IFB","python"]
+lista3 = ["oi", 2.0,5,[10,20]]
+print (lista1)
+print (lista2)
+print (lista3)		
