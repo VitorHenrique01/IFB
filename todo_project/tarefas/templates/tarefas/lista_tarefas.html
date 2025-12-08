@@ -1,0 +1,62 @@
+{% extends 'tarefas/base.html' %}
+{% block title %}Minhas Tarefas{% endblock %}
+
+{% block content %}
+<h2 class="mb-3">Minhas Tarefas</h2>
+
+<div class="mb-3">
+    <a href="?status=pendente" class="btn btn-warning">Pendentes</a>
+    <a href="?status=concluida" class="btn btn-success">Concluídas</a>
+    <a href="/" class="btn btn-secondary">Todas</a>
+</div>
+
+<table class="table table-bordered bg-white">
+    <thead>
+        <tr>
+            <th>Título</th>
+            <th>Status</th>
+            <th>Data</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for tarefa in page_obj %}
+        <tr>
+            <td>{{ tarefa.titulo }}</td>
+            <td>{{ tarefa.get_status_display }}</td>
+            <td>{{ tarefa.data_criacao|date:"d/m/Y" }}</td>
+            <td>
+                <a href="{% url 'editar_tarefa' tarefa.id %}" class="btn btn-sm btn-primary">Editar</a>
+                <a href="{% url 'excluir_tarefa' tarefa.id %}" class="btn btn-sm btn-danger">Excluir</a>
+            </td>
+        </tr>
+    {% empty %}
+        <tr>
+            <td colspan="4">Nenhuma tarefa encontrada.</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<!-- Paginação -->
+<nav>
+  <ul class="pagination">
+    {% if page_obj.has_previous %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Anterior</a>
+        </li>
+    {% endif %}
+
+    <li class="page-item disabled">
+        <span class="page-link">{{ page_obj.number }}</span>
+    </li>
+
+    {% if page_obj.has_next %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.next_page_number }}">Próxima</a>
+        </li>
+    {% endif %}
+  </ul>
+</nav>
+
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'tarefas/base.html' %}
+
+{% block content %}
+<h2>Login</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Entrar</button>
+</form>
+
+<!-- Botão de Criar Conta -->
+<p style="margin-top: 20px;">
+    Não tem uma conta?
+    <a href="{% url 'signup' %}" style="color: blue; text-decoration: underline;">Criar Conta</a>
+</p>
+{% endblock %}

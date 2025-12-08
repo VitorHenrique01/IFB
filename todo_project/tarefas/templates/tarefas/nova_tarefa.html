@@ -1,0 +1,33 @@
+{% extends 'tarefas/base.html' %}
+{% block title %}{{ titulo_pagina }}{% endblock %}
+
+{% block content %}
+<h2>{{ titulo_pagina }}</h2>
+
+<form method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label class="form-label">Título</label>
+        {{ form.titulo }}
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Descrição</label>
+        {{ form.descricao }}
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Status</label>
+        {{ form.status }}
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Data de expiração</label>
+        {{ form.data_expiracao }}
+    </div>
+
+    <button type="submit" class="btn btn-success">Salvar</button>
+    <a href="{% url 'lista_tarefas' %}" class="btn btn-secondary">Cancelar</a>
+</form>
+
+{% endblock %}
